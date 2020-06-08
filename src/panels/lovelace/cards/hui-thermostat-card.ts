@@ -1,4 +1,5 @@
 import "../../../components/ha-icon-button";
+import "../../../components/ha-round-slider";
 import "@thomasloven/round-slider";
 import { HassEntity } from "home-assistant-js-websocket";
 import {
@@ -114,7 +115,11 @@ export class HuiThermostatCard extends LitElement implements LovelaceCard {
 
     const slider =
       stateObj.state === UNAVAILABLE
-        ? html` <round-slider disabled="true"></round-slider> `
+        ? html`
+            <round-slider disabled="true"
+              ><round-slider> </round-slider
+            ></round-slider>
+          `
         : html`
             <round-slider
               .value=${targetTemp}
@@ -125,7 +130,24 @@ export class HuiThermostatCard extends LitElement implements LovelaceCard {
               .step=${this._stepSize}
               @value-changing=${this._dragEvent}
               @value-changed=${this._setTemperature}
+              ><round-slider> </round-slider
             ></round-slider>
+          `;
+
+    const slider2 =
+      stateObj.state === UNAVAILABLE
+        ? html` <ha-round-slider disabled="true"></ha-round-slider> `
+        : html`
+            <ha-round-slider
+              .value=${targetTemp}
+              .low=${stateObj.attributes.target_temp_low}
+              .high=${stateObj.attributes.target_temp_high}
+              .min=${stateObj.attributes.min_temp}
+              .max=${stateObj.attributes.max_temp}
+              .step=${this._stepSize}
+              @value-changing=${this._dragEvent}
+              @value-changed=${this._setTemperature}
+            ></ha-round-slider>
           `;
 
     const currentTemperature = !isNaN(stateObj.attributes.current_temperature)
@@ -221,7 +243,7 @@ export class HuiThermostatCard extends LitElement implements LovelaceCard {
         <div class="content">
           <div id="controls">
             <div id="slider">
-              ${slider}
+              ${slider2}
               <div id="slider-center">
                 <div id="temperature">
                   ${currentTemperature} ${setValues}
