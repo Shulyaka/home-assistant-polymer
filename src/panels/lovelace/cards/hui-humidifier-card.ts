@@ -98,6 +98,10 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
       ? this.hass.states[this._config.current_humidity_sensor]
       : undefined;
 
+    const stateObjWorkingSensor = this._config!.working_sensor
+      ? this.hass.states[this._config.working_sensor]
+      : undefined;
+
     const name =
       this._config!.name ||
       computeStateName(this.hass!.states[this._config!.entity]);
@@ -167,7 +171,21 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
     const currentMode = html`
       <svg viewBox="0 0 40 10" id="mode">
         <text x="50%" y="50%" text-anchor="middle" id="set-mode">
-          ${this.hass!.localize(`state.default.${stateObj.state}`)}
+          ${stateObj.state === "on" && stateObjWorkingSensor
+            ? ["on", "off"].includes(stateObjWorkingSensor.state)
+              ? html`
+                  ${this.hass!.localize(
+                    `ui.card.humidifier.working_sensor.${stateObjWorkingSensor.state}`
+                  )}
+                `
+              : html`
+                  ${computeStateDisplay(
+                    this.hass!.localize,
+                    stateObjWorkingSensor,
+                    this.hass!.locale
+                  )}
+                `
+            : this.hass!.localize(`state.default.${stateObj.state}`)}
           ${stateObj.attributes.mode && !isUnavailableState(stateObj.state)
             ? html`
                 -
@@ -219,7 +237,10 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
       hasConfigOrEntityChanged(this, changedProps) ||
       (this._config!.current_humidity_sensor !== undefined &&
         oldHass.states[this._config!.current_humidity_sensor] !==
-          this.hass!.states[this._config!.current_humidity_sensor])
+          this.hass!.states[this._config!.current_humidity_sensor]) ||
+      (this._config!.working_sensor !== undefined &&
+        oldHass.states[this._config!.working_sensor] !==
+          this.hass!.states[this._config!.working_sensor])
     );
   }
 

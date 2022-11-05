@@ -179,7 +179,11 @@
         "humidity": "Target humidity",
         "mode": "Mode",
         "target_humidity_entity": "{name} target humidity",
-        "on_entity": "{name} on"
+        "on_entity": "{name} on",
+        "working_sensor": {
+          "on": "Working",
+          "off": "Idle"
+        }
       },
       "light": {
         "brightness": "Brightness",
@@ -4193,7 +4197,8 @@
             "humidifier": {
               "name": "Humidifier",
               "description": "The Humidifier card gives control of your humidifier entity. Allowing you to change the humidity and mode of the entity.",
-              "current_humidity_sensor": "Sensor for the current humidity"
+              "current_humidity_sensor": "Sensor for the current humidity",
+              "working_sensor": "Sensor showing whether working or idle"
             },
             "iframe": {
               "name": "Webpage",

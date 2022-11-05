@@ -16,6 +16,7 @@ const cardConfigStruct = assign(
     name: optional(string()),
     theme: optional(string()),
     current_humidity_sensor: optional(string()),
+    working_sensor: optional(string()),
   })
 );
 
@@ -36,6 +37,10 @@ const SCHEMA = [
   {
     name: "current_humidity_sensor",
     selector: { entity: { domain: "sensor" } },
+  },
+  {
+    name: "working_sensor",
+    selector: { entity: {} },
   },
 ] as const;
 
@@ -91,6 +96,12 @@ export class HuiHumidifierCardEditor
     if (schema.name === "current_humidity_sensor") {
       return this.hass!.localize(
         "ui.panel.lovelace.editor.card.humidifier.current_humidity_sensor"
+      );
+    }
+
+    if (schema.name === "working_sensor") {
+      return this.hass!.localize(
+        "ui.panel.lovelace.editor.card.humidifier.working_sensor"
       );
     }
 
