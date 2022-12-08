@@ -96,7 +96,7 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
 
     const stateObjCurrentHumidity = this._config!.current_humidity_sensor
       ? this.hass.states[this._config.current_humidity_sensor]
-      : None;
+      : undefined;
 
     const name =
       this._config!.name ||
@@ -216,7 +216,7 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
 
     return (
       hasConfigOrEntityChanged(this, changedProps) ||
-      (this._config!.current_humidity_sensor &&
+      (this._config!.current_humidity_sensor !== undefined &&
         oldHass.states[this._config!.current_humidity_sensor] !==
           this.hass!.states[this._config!.current_humidity_sensor])
     );
