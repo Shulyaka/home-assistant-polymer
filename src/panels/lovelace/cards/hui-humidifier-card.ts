@@ -152,7 +152,8 @@ export class HuiHumidifierCard extends LitElement implements LovelaceCard {
                 ${computeStateDisplay(
                   this.hass!.localize,
                   stateObjCurrentHumidity,
-                  this.hass!.locale
+                  this.hass!.locale,
+                  this.hass!.entities
                 )}
               `
             : ""}
