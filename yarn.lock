@@ -1756,13 +1756,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/list@npm:5.9.0":
-  version: 5.9.0
-  resolution: "@fullcalendar/list@npm:5.9.0"
-  dependencies:
-    "@fullcalendar/common": ~5.9.0
-    tslib: ^2.1.0
-  checksum: f71a9ad0a42bebdd46dca0691e2f987596296e09521481f6b7a3c2fc5529b39d3466251830b735cd51748f46488a82ae309402533ae805f7b70159530060fbf9
+"@fullcalendar/list@npm:6.1.6":
+  version: 6.1.6
+  resolution: "@fullcalendar/list@npm:6.1.6"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.6
+  checksum: e5beb01c624b9994490ef0e8e3cb4e9f97efd4a0be6539191f912a27df4cd56bbf4124f558536618f18889b8133920fadf0962994a7345fb089fd4245bcbcf15
   languageName: node
   linkType: hard
 
@@ -9349,7 +9348,7 @@ fsevents@^1.2.7:
     "@fullcalendar/core": 5.9.0
     "@fullcalendar/daygrid": 5.9.0
     "@fullcalendar/interaction": 5.9.0
-    "@fullcalendar/list": 5.9.0
+    "@fullcalendar/list": 6.1.6
     "@fullcalendar/timegrid": 5.9.0
     "@koa/cors": ^3.1.0
     "@lit-labs/motion": ^1.0.2
