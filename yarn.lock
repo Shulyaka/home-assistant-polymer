@@ -9474,7 +9474,7 @@ fsevents@^1.2.7:
     leaflet: ^1.7.1
     leaflet-draw: ^1.0.4
     lint-staged: ^13.0.3
-    lit: ^2.1.2
+    lit: ^2.7.4
     lit-analyzer: ^1.2.1
     lodash.template: ^4.5.0
     magic-string: ^0.25.7
