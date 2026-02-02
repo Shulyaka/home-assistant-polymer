@@ -93,9 +93,29 @@ export const showOptionsFlowDialog = (
           : "";
       },
 
+<<<<<<< Updated upstream
       renderShowFormStepFieldLabel(hass, step, field) {
         return hass.localize(
           `component.${configEntry.domain}.options.step.${step.step_id}.data.${field.name}`
+=======
+      renderShowFormStepFieldLabel(hass, step, field, options) {
+        if (field.type === "expandable") {
+          return (
+            hass.localize(
+              `component.${configEntry.domain}.options.step.${step.step_id}.sections.${field.name}.name`,
+              step.description_placeholders
+            ) || field.name
+          );
+        }
+
+        const prefix = options?.path?.[0] ? `sections.${options.path[0]}.` : "";
+
+        return (
+          hass.localize(
+            `component.${configEntry.domain}.options.step.${step.step_id}.${prefix}data.${field.name}`,
+            step.description_placeholders
+          ) || field.name
+>>>>>>> Stashed changes
         );
       },
 
